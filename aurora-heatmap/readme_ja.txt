@@ -3,8 +3,8 @@ Contributors: R3098
 Donate link: https://seous.info/
 Tags: ヒートマップ,analytics,analyze,click,heatmap,Japanese,statistics
 Requires at least: 4.9
-Tested up to: 6.5
-Stable tag: 1.6.2
+Tested up to: 6.8.0
+Stable tag: 1.7.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 7.0
@@ -170,6 +170,13 @@ Aurora Heatmap は多くのヒートマップサービスとは違い、完全�
 5. クリックヒートマップのサンプル
 
 == Changelog ==
+
+= 1.7.1 =
+
+* プラグイン有効化の際の処理が正常に行われない問題を修正しました。
+* WordPress 6.7.0 以降での Notice error を修正しました。
+* Tested up to WordPress 6.8.
+* 有料版の Freemius SDK を更新しました。
 
 = 1.7.0 =
 

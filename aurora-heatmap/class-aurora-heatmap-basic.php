@@ -5,8 +5,8 @@
  * Main class for the Free Version.
  *
  * @package aurora-heatmap
- * @copyright 2019-2024 R3098 <info@seous.info>
- * @version 1.7.0
+ * @copyright 2019-2025 R3098 <info@seous.info>
+ * @version 1.7.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,7 +20,7 @@ class Aurora_Heatmap_Basic {
 
 	const SLUG = 'aurora-heatmap';
 
-	const VERSION = '1.7.0';
+	const VERSION = '1.7.1';
 
 	const PLAN = 'basic';
 
@@ -139,7 +139,7 @@ class Aurora_Heatmap_Basic {
 	 */
 	public function admin_init() {
 		// Activate.
-		if ( is_admin() && get_option( 'Activated_Plugin' ) === $this::SLUG ) {
+		if ( is_admin() && in_array( get_option( 'Activated_Plugin' ), array( 'aurora-heatmap', 'aurora_heatmap' ) ) ) {
 			delete_option( 'Activated_Plugin' );
 			$this::activation();
 		}
@@ -254,8 +254,8 @@ class Aurora_Heatmap_Basic {
 	/**
 	 * Callback for register_activation_hook
 	 */
-	public static function activation() {
-		self::get_instance()->setup();
+	public function activation() {
+		$this->setup();
 	}
 
 	/**
@@ -1759,8 +1759,6 @@ class Aurora_Heatmap_Basic {
 			'keep_url_query'      => filter_input( INPUT_POST, 'keep_url_query', FILTER_VALIDATE_BOOLEAN ),
 			'keep_url_hash'       => filter_input( INPUT_POST, 'keep_url_hash', FILTER_VALIDATE_BOOLEAN ),
 			'ajax_delay_time'     => filter_input( INPUT_POST, 'ajax_delay_time', FILTER_VALIDATE_INT ),
-			'ajax_interval'       => filter_input( INPUT_POST, 'ajax_interval', FILTER_VALIDATE_INT ),
-			'ajax_bulk'           => filter_input( INPUT_POST, 'ajax_bulk', FILTER_VALIDATE_INT ),
 		);
 
 		$this->options->save( $options );

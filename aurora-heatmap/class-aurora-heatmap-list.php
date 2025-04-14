@@ -3,8 +3,8 @@
  * Aurora Heatmap List Class
  *
  * @package aurora-heatmap
- * @copyright 2019-2024 R3098 <info@seous.info>
- * @version 1.7.0
+ * @copyright 2019-2025 R3098 <info@seous.info>
+ * @version 1.7.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

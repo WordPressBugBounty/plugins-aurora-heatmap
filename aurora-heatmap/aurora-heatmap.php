@@ -3,15 +3,15 @@
  * Plugin Name: Aurora Heatmap
  * Plugin URI:  https://market.seous.info/aurora-heatmap
  * Description: Beautiful like an aurora! A simple WordPress heatmap that can be completed with just a plugin.
- * Version:     1.7.0
+ * Version:     1.7.1
  * Author:      R3098
  * Author URI:  https://seous.info/
  * License:     GPLv2
  * Text Domain: aurora-heatmap
  *
  * @package aurora-heatmap
- * @copyright 2019-2024 R3098 <info@seous.info>
- * @version 1.7.0
+ * @copyright 2019-2025 R3098 <info@seous.info>
+ * @version 1.7.1
   */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -85,7 +85,9 @@ function () {
 	__( 'See details', 'aurora-heatmap' );
 };
 
-load_plugin_textdomain( 'aurora-heatmap' );
+add_action('init', function () {
+	load_plugin_textdomain( 'aurora-heatmap' );
+});
 
 if ( ! function_exists( 'aurora_heatmap_uninstall' ) ) {
 	/**
@@ -120,22 +122,23 @@ require_once __DIR__ . '/class-aurora-heatmap-options.php';
 require_once __DIR__ . '/class-aurora-heatmap-basic.php';
 
 
-$aurora_heatmap_plan = 'Basic';
-if ( is_file( __DIR__ . '/aurora-heatmap__premium_only.php' ) ) {
-	$aurora_heatmap_plan = include __DIR__ . '/aurora-heatmap__premium_only.php';
-}
 
 register_activation_hook(
 	__FILE__,
 	function () {
-		add_option( 'Activated_Plugin', 'aurora_heatmap' );
+		add_option( 'Activated_Plugin', 'aurora-heatmap' );
 	}
 );
-register_deactivation_hook( __FILE__, "Aurora_Heatmap_$aurora_heatmap_plan::deactivation" );
+register_deactivation_hook( __FILE__, "Aurora_Heatmap_Basic::deactivation" );
 register_uninstall_hook( __FILE__, 'aurora_heatmap_uninstall' );
 
 
-add_action( 'init', "Aurora_Heatmap_$aurora_heatmap_plan::get_instance" );
-unset( $aurora_heatmap_plan );
+add_action( 'init', function() {
+	$plan = 'Basic';
+	if ( is_file( __DIR__ . '/aurora-heatmap__premium_only.php' ) ) {
+		$plan = include __DIR__ . '/aurora-heatmap__premium_only.php';
+	}
+	call_user_func("Aurora_Heatmap_$plan::get_instance");
+});
 
 /* vim: set ts=4 sw=4 sts=4 noet: */

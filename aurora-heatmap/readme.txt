@@ -3,8 +3,8 @@ Contributors: R3098
 Donate link: https://seous.info/
 Tags: analytics,analyze,click,heatmap,Japanese,statistics,ヒートマップ
 Requires at least: 4.9
-Tested up to: 6.5
-Stable tag: 1.6.2
+Tested up to: 6.8.0
+Stable tag: 1.7.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 7.0
@@ -170,6 +170,13 @@ In both the free version and paid version, there is no transmission of heat map 
 5. Click heatmap sample
 
 == Changelog ==
+
+= 1.7.1 =
+
+* Fixed an issue where the plugin activation process was not performed correctly.
+* Fixed the Notice error in WordPress 6.7.0 or later.
+* Tested up to WordPress 6.8.
+* Update the Freemius SDK in the premium version.
 
 = 1.7.0 =
 
